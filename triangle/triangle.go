@@ -1,31 +1,37 @@
-// This is a "stub" file.  It's a little start on your solution.
-// It's not a complete solution though; you have to write some code.
 
-// Package triangle should have a package comment that summarizes what it's about.
-// https://golang.org/doc/effective_go.html#commentary
+
 package triangle
 
 import "math"
 
 // Notice KindFromSides() returns this type. Pick a suitable data type.
+// ********* Here the triangle_test.go file is expecting result of type "Kind"
+//			 So we used a custom-type ************
 type Kind string
 
 const (
-    // Pick values for the following identifiers used by the test program.
+	
     NaT, Equ, Iso, Sca Kind = "NaT", "Equ", "Iso", "Sca"
 )
 
-func checVar( x float64 ) bool {
-	if x != 0 && x > math.Inf(-1) && x < math.Inf(1) {
+// ***** The function checkVar() evaluates whether
+// 		- The given number is greater than 0
+//		- The given number is b/w 0 and +Inf 
+func checkVar( x float64 ) bool {
+
+	if x > 0 && x != math.Inf(-1) && x != math.Inf(1) {
+
 		return true
 	}
 	return false
 }
-// KindFromSides should have a comment documenting it.
+
 func KindFromSides(a, b, c float64) Kind {
 	
 	var k Kind = NaT
-	if checVar(a) && checVar(b) && checVar(c) {
+	// Evaluating: The given number is valid or not for our cases..... 
+	if checkVar(a) && checkVar(b) && checkVar(c) {
+		// Evaluating: The given Sides form a triangle........
 		if (a + b >= c) && (a + c >= b ) && (b + c >= a) {
 			switch {
 				case a == b && b == c: k = Equ
