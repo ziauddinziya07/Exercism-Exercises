@@ -2,29 +2,45 @@ package scrabble
 
 import "strings"
 
+// Score return scrabble-score of a string  
 func Score ( str string ) ( x int ) {
 	// This Exercise is on For loop, Maps and strings.......
 	// So thats why we use Maps...
 	str = strings.ToUpper(str) 	// String might be in lower so we convert it to Upper - case
-	scores := map[string]int {
+	var temp = []rune(str)
+	scores := map[rune]int {
 
-		"AEIOULNRST": 1,
-		"DG": 2,
-		"BCMP": 3,
-		"FHVWY": 4,
-		"K": 5,
-		"JX": 8,
-		"QZ": 10,
+		'A': 1,
+		'E': 1,
+		'I': 1,
+		'O': 1,
+		'U': 1,
+		'L': 1,
+		'N': 1,
+		'R': 1,
+		'S': 1,
+		'T': 1,
+		'D': 2,
+		'G': 2,
+		'B': 3,
+		'C': 3,
+		'M': 3,
+		'P': 3,
+		'F': 4,
+		'H': 4,
+		'V': 4,
+		'W': 4,
+		'Y': 4,
+		'K': 5,
+		'J': 8,
+		'X': 8,
+		'Q': 10,
+		'Z': 10,
 	}
 
-	for _, s := range str {
+	for _, s := range temp {
 
-		for k, v := range scores {
-
-			if strings.ContainsAny(k, string(s)) {
-				x += v
-			}
-		}
+		x += scores[s]		
 	}
 	return
 }
